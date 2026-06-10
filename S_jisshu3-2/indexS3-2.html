@@ -1,0 +1,71 @@
+<!DOCTYPE html> 
+<html lang="ja"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <title>プログラミング入門Ｂ</title> 
+    <link rel="stylesheet" href="styleS.css"> 
+    <script>
+        var sum=0;
+        function checkout( ) { 
+            sum=0;
+            var val;
+            var num = document.jsform.Q1.length;  
+            for( var i=0 ; i<num ; i++ ) { 
+                if( document.jsform.Q1[i].checked ) { 
+                    sum += parseInt(document.jsform.Q1[i].value);  
+                } 
+            } 
+            num=document.jsform.Q2.length;
+            for(var i=0;i<num;i++){
+                if(document.jsform.Q2[i].checked==true){
+                    str=document.jsform.Q2[i].value;
+                    val=parseInt(str);
+                    sum+=val;
+                }
+            }
+            document.getElementById("king").value=sum;
+        }
+        function pay(){
+            var str=document.jsform.tbox2.value;
+            var amout=parseInt(str);
+            var oturi=amout-sum;
+            obj=document.getElementById("osturi");
+            obj.innerHTML="おつりは"+oturi+"円";
+
+        }
+    </script>
+</head>
+<body>
+    <h1>総合 3-2</h1> 
+    <div id="ID">学籍番号：2424027  氏名：山口尭澄</div> 
+    <div id="setu"> 
+    <p>ラーメンとトッピングを選んで[金額]ボタンを押してください</p> 
+    </div>
+    <div class="IDs">
+    <p>ラーメンの種類を１つ選んでください</p>
+    </div>
+    <form name="jsform">
+    <input type="radio" name="Q1" value="1200">醬油ラーメン(1,200円)
+    <input type="radio" name="Q1" value="1500">豚骨ラーメン(1,500円)
+    <input type="radio" name="Q1" value="1000">塩ラーメン(1,000円)
+    
+    <div class="IDs">
+    <p>トッピングを選んでください</p>
+    </div>
+    <ul>
+    <li><input type="checkbox" name="Q2" value="330">チャーシュー(330円)</li>
+    <li><input type="checkbox" name="Q2" value="275">煮卵(275円)</li>
+    <li><input type="checkbox" name="Q2" value="110">コーン(110円)</li>
+    </ul>
+    <input type="button" value="金額" onclick="checkout()">
+    <input type="text" name="tbox1" id="king" >円
+    <div class="IDs">
+        <p>お金を入力して,会計ボタンを押してください</p><br>
+        <input type="text" name="tbox2" value="">円
+        <input type="button" value="会計" onclick="pay()">
+        <p id="osturi"></p>
+    </div>
+    </form>
+
+</body>
+</html>
